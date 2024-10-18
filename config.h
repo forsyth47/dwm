@@ -116,7 +116,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,		XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,		XK_o,      spawn,          SHCMD("$HOME/.local/src/walsc") },
 	{ ControlMask|ShiftMask, XK_o, spawn, SHCMD("rm $(cat /home/zero/.cache/wal/wal) && notify-send -t 1000 'Wal has been deleted 🗑'") },
-	{ MODKEY|ShiftMask, XK_s, spawn, SHCMD("curl -F\"file=@$(import -window root $HOME/pix/Screenshots/$(date +%d%m%y-%H%M%S).png && echo \"/home/zero/pix/Screenshots/$(ls $HOME/pix/Screenshots/ -t | head -1)\")\" https://0x0.st | xclip -selection clipboard && notify-send -t 1000 \"Screenshot has been copied .~.\"") },
+	{ MODKEY|ShiftMask, XK_s, spawn, SHCMD("curl -F\"file=@$(import -window root $HOME/pix/Screenshots/$(date +%d%m%y-%H%M%S).png && echo \"/home/zero/pix/Screenshots/$(ls $HOME/pix/Screenshots/ -t | head -1)\")\" https://0x0.st | xclip -selection clipboard && setsid dunst && notify-send -t 1000 \"Screenshot has been copied .~.\"") },
 	{ MODKEY|ShiftMask, XK_f, spawn, SHCMD("thunar") },
 	{ MODKEY, XK_z, spawn, SHCMD("$HOME/.config/rofi/powermenu/type-6/powermenu.sh") },
 	/* Volume control */
