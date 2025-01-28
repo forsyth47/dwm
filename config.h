@@ -73,7 +73,8 @@ static const char *micmute[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@",
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont};
-static const char *termcmd[]  = { "terminator", NULL };
+static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd2[] = {"terminator", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -93,6 +94,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,  	   setlayout,      {0} },
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,			XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,		XK_Return, spawn, 	   {.v = termcmd2} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -116,7 +118,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,		XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,		XK_o,      spawn,          SHCMD("$HOME/.local/src/walsc") },
 	{ ControlMask|ShiftMask, XK_o, spawn, SHCMD("rm $(cat /home/zero/.cache/wal/wal) && notify-send -t 1000 'Wal has been deleted 🗑'") },
-	{ MODKEY|ShiftMask, XK_s, spawn, SHCMD("curl -F\"file=@$(import -window root $HOME/pix/Screenshots/$(date +%d%m%y-%H%M%S).png && echo \"/home/zero/pix/Screenshots/$(ls $HOME/pix/Screenshots/ -t | head -1)\")\" https://0x0.st | xclip -selection clipboard && setsid dunst && notify-send -t 1000 \"Screenshot has been copied .~.\"") },
+	{ MODKEY,           XK_Print, spawn, SHCMD("curl -F\"file=@$(import -window root $HOME/pix/Screenshots/$(date +%d%m%y-%H%M%S).png && echo \"/home/zero/pix/Screenshots/$(ls $HOME/pix/Screenshots/ -t | head -1)\")\" https://0x0.st | xclip -selection clipboard && notify-send -t 1000 \"Screenshot has been copied .~.\"") },
+	{ 0,                XK_Print, spawn, SHCMD("flameshot gui")},
 	{ MODKEY|ShiftMask, XK_f, spawn, SHCMD("thunar") },
 	{ MODKEY, XK_z, spawn, SHCMD("$HOME/.config/rofi/powermenu/type-6/powermenu.sh") },
 	/* Volume control */
