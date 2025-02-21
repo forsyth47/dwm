@@ -1,0 +1,3 @@
+dunst &
+wal -R &
+exec dwm
