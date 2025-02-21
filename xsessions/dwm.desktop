@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=XSession
+Exec=/usr/share/xsessions/dwmstarter
+TryExec=/usr/share/xsessions/dwmstarter
+DesktopNames=DWM
+Name=DWM
+Comment=COOLESTWM HEEHEE
